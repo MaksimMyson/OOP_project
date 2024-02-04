@@ -14,7 +14,8 @@ void createAndWriteWordsToFile(const string& filename) {
         file << "programming" << endl;
         file << "hangman" << endl;
         file << "cplusplus" << endl;
-        // Додайте інші слова за потребою
+        
+       
 
         file.close();
         cout << "Words have been written to the file." << endl;
@@ -105,7 +106,7 @@ void displayHangman(int attempts) {
         cout << "|    |" << endl;
         cout << "|    O" << endl;
         cout << "|   /|\\" << endl;
-        cout << "|   / " << endl;
+        cout << "|   / \\" << endl;
         cout << "|_____" << endl;
         break;
     case 6:
@@ -116,6 +117,7 @@ void displayHangman(int attempts) {
         cout << "|   / \\" << endl;
         cout << "|_____" << endl;
         break;
+   
     default:
         break;
     }
