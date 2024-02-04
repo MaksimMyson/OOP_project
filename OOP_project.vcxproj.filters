@@ -4,10 +4,21 @@
     <Filter Include="main">
       <UniqueIdentifier>{38f68367-f648-46d1-aebf-c9503ed80cd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="hangman_game">
+      <UniqueIdentifier>{41cd650f-ef85-4a7c-8380-48a94e5646eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="hangman_game.cpp">
+      <Filter>hangman_game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hangman_game.h">
+      <Filter>hangman_game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
