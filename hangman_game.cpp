@@ -1,8 +1,6 @@
 #include "hangman_game.h"
 #include <iostream>
 #include <fstream>
-#include <ctime>
-#include <cstdlib>
 #include <algorithm>
 
 using namespace std;
@@ -14,8 +12,11 @@ void createAndWriteWordsToFile(const string& filename) {
         file << "programming" << endl;
         file << "hangman" << endl;
         file << "cplusplus" << endl;
-        
-       
+        file << "computer" << endl;
+        file << "science" << endl;
+        file << "sport" << endl;
+        file << "table" << endl;
+        file << "good" << endl;
 
         file.close();
         cout << "Words have been written to the file." << endl;
@@ -117,8 +118,10 @@ void displayHangman(int attempts) {
         cout << "|   / \\" << endl;
         cout << "|_____" << endl;
         break;
-   
+
     default:
         break;
     }
 }
+
+

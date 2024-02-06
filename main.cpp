@@ -1,6 +1,8 @@
 #include "hangman_game.h"
 #include <iostream>
+#include <ctime>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -9,7 +11,12 @@ int main() {
 
     createAndWriteWordsToFile("words.txt");
     vector<string> words = readWordsFromFile("words.txt");
-    string secretWord = words[0];
+
+    // Seed the random number generator
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    // Select a random word from the vector
+    string secretWord = words[rand() % words.size()];
 
     const int maxAttempts = 6;
     vector<char> guessedLetters;
@@ -26,27 +33,30 @@ int main() {
         string guess;
         cin >> guess;
 
+        // Check if the input is a single letter
         if (guess.length() == 1 && isalpha(guess[0])) {
-            guessedLetters.push_back(tolower(guess[0]));
+            char guessedLetter = tolower(guess[0]);
+            guessedLetters.push_back(guessedLetter);
+
+            // Check if the guessed letter is in the secret word
+            if (secretWord.find(guessedLetter) != string::npos) {
+                cout << "Correct! The letter '" << guessedLetter << "' is in the word." << endl;
+            }
+            else {
+                cout << "Incorrect. This letter is not in the word." << endl;
+                attempts++;
+            }
+
+            // Check if all letters of the secret word have been guessed
+            if (all_of(secretWord.begin(), secretWord.end(), [&](char letter) {
+                return find(guessedLetters.begin(), guessedLetters.end(), letter) != guessedLetters.end();
+                })) {
+                cout << "\nCongratulations! You've guessed the word: " << secretWord << endl;
+                break;
+            }
         }
         else {
             cout << "Invalid input. Please enter a single letter." << endl;
-            continue;
-        }
-
-        if (secretWord.find(tolower(guess[0])) != string::npos) {
-            cout << "Correct! The letter '" << tolower(guess[0]) << "' is in the word." << endl;
-        }
-        else {
-            cout << "Incorrect. This letter is not in the word." << endl;
-            attempts++;
-        }
-
-        if (all_of(secretWord.begin(), secretWord.end(), [&](char letter) {
-            return find(guessedLetters.begin(), guessedLetters.end(), letter) != guessedLetters.end();
-            })) {
-            cout << "\nCongratulations! You've guessed the word: " << secretWord << endl;
-            break;
         }
     }
 
